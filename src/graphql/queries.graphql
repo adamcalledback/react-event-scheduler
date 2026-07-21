@@ -6,6 +6,7 @@ mutation getEvent($id: ID!) {
     start
     end
     description
+    isPetFriendly
     createdAt
     updatedAt
     createdBy {

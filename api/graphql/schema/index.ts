@@ -29,6 +29,7 @@ export const typeDefs = gql`
     end: String!
     url: String
     isPrivate: Boolean!
+    isPetFriendly: Boolean!
     description: String!
     createdBy: User
     createdAt: Float
@@ -74,6 +75,7 @@ export const typeDefs = gql`
     start: String!
     end: String!
     isPrivate: Boolean!
+    isPetFriendly: Boolean!
     description: String!
   }
 

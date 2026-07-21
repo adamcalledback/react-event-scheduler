@@ -204,6 +204,7 @@ describe('Events Resolvers', () => {
         start: '2024-01-01T10:00:00',
         end: '2024-01-01T12:00:00',
         isPrivate: false,
+        isPetFriendly: true,
         description: 'Test description',
       }
 
@@ -242,6 +243,9 @@ describe('Events Resolvers', () => {
       )
 
       expect(result).toBeDefined()
+      expect(EventModel).toHaveBeenCalledWith(
+        expect.objectContaining({ isPetFriendly: true }),
+      )
       expect(mockEventInstance.save).toHaveBeenCalled()
       //expect(mockSavedEvent.save).toHaveBeenCalled()
     })
@@ -253,6 +257,7 @@ describe('Events Resolvers', () => {
         start: '2024-01-01T10:00:00',
         end: '2024-01-01T12:00:00',
         isPrivate: false,
+        isPetFriendly: true,
         description: 'Updated description',
       }
 
@@ -287,6 +292,7 @@ describe('Events Resolvers', () => {
         expect.objectContaining({
           title: 'Updated Event',
           isPrivate: false,
+          isPetFriendly: true,
         }),
         { new: true },
       )
@@ -300,6 +306,7 @@ describe('Events Resolvers', () => {
         start: '2024-01-01T10:00:00',
         end: '2024-01-01T12:00:00',
         isPrivate: false,
+        isPetFriendly: false,
         description: 'Test',
       }
 
@@ -320,6 +327,7 @@ describe('Events Resolvers', () => {
         start: '2024-01-01T10:00:00',
         end: '2024-01-01T12:00:00',
         isPrivate: false,
+        isPetFriendly: false,
         description: 'Test',
       }
 

@@ -27,6 +27,11 @@ const schema = new Schema<IEvent>(
       type: Boolean,
       required: false,
     },
+    isPetFriendly: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',

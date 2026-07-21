@@ -8,6 +8,7 @@ export interface IEvent {
   description: string
   url: string
   isPrivate: boolean
+  isPetFriendly: boolean
   createdBy: Types.ObjectId
 }
 

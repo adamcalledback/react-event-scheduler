@@ -16,6 +16,7 @@ export type CardType = {
   content: string
   url: Maybe<string> | undefined
   isPrivate?: boolean
+  isPetFriendly?: boolean
   createdAt?: number
   updatedAt?: number
   createdBy: string
@@ -33,6 +34,7 @@ const Card = ({ card, onClick }: Props) => {
     content,
     url,
     isPrivate,
+    isPetFriendly,
     exSubTitle,
     createdAt,
     updatedAt,
@@ -48,6 +50,9 @@ const Card = ({ card, onClick }: Props) => {
             {exSubTitle}
           </StyledSubTitle>{' '}
           {isPrivate && <StyledPrivateBadge>Private</StyledPrivateBadge>}
+          {isPetFriendly && (
+            <StyledPetFriendlyBadge>Pet friendly</StyledPetFriendlyBadge>
+          )}
         </h5>
         <h6 className='card-subtitle mb-2 text-muted'>{subtitle}</h6>
         <p className='card-text'>{content}</p>
@@ -127,6 +132,13 @@ export const StyledSubTitle = styled.span.attrs<{ type: string }>(
 
 export const StyledPrivateBadge = styled.span.attrs(() => ({
   className: 'badge rounded-pill bg-danger',
+}))`
+  font-size: small;
+  font-weight: 500;
+`
+
+export const StyledPetFriendlyBadge = styled.span.attrs(() => ({
+  className: 'badge rounded-pill bg-success ms-1',
 }))`
   font-size: small;
   font-weight: 500;

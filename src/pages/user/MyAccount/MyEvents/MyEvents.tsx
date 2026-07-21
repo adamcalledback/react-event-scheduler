@@ -14,6 +14,7 @@ type Event = {
   start: string
   end: string
   isPrivate: string
+  isPetFriendly: string
   url: string | JSX.Element
   createdAt: string
   updatedAt: string
@@ -64,6 +65,7 @@ const MyEvents = () => {
       start,
       end,
       isPrivate,
+      isPetFriendly,
       description,
       url,
       // createdBy,
@@ -79,6 +81,7 @@ const MyEvents = () => {
       end: new Date(end).toLocaleString(),
       // createdBy: createdBy?.username,
       isPrivate: isPrivate ? 'Yes' : 'No',
+      isPetFriendly: isPetFriendly ? 'Yes' : 'No',
       url: url,
       createdAt: createdAt ? new Date(createdAt).toLocaleString() : '',
       updatedAt: updatedAt ? new Date(updatedAt).toLocaleString() : '',
@@ -115,6 +118,13 @@ const MyEvents = () => {
     {
       key: 'isPrivate',
       header: 'Private',
+      sortable: true,
+      searchable: true,
+      width: '10%',
+    },
+    {
+      key: 'isPetFriendly',
+      header: 'Pet friendly',
       sortable: true,
       searchable: true,
       width: '10%',

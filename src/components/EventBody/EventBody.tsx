@@ -10,6 +10,7 @@ export type EventType = {
   start: string
   end: string
   isPrivate: boolean
+  isPetFriendly: boolean
   description: string
   createdById?: string
 }
@@ -67,7 +68,9 @@ const EventBody = ({
     const { value } = event.target
 
     const getValue = () =>
-      prop === 'isPrivate' ? (event.target as HTMLInputElement).checked : value
+      prop === 'isPrivate' || prop === 'isPetFriendly'
+        ? (event.target as HTMLInputElement).checked
+        : value
 
     setLocalEvent({
       ...localEvent,
@@ -213,6 +216,19 @@ const EventBody = ({
           />
           <label className='form-check-label' htmlFor='gridCheck'>
             Private (event is only visible to you)
+          </label>
+        </div>
+        <div className='form-check'>
+          <input
+            className='form-check-input'
+            type='checkbox'
+            disabled={disableEdit}
+            id='isPetFriendly'
+            checked={localEvent.isPetFriendly}
+            onChange={(e) => handleValueChange(e, 'isPetFriendly')}
+          />
+          <label className='form-check-label' htmlFor='isPetFriendly'>
+            Pet friendly
           </label>
         </div>
       </div>

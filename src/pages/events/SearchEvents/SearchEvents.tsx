@@ -37,6 +37,7 @@ function SearchEvents() {
     start: '',
     end: '',
     isPrivate: false,
+    isPetFriendly: false,
     description: '',
     createdById: '',
   })
@@ -61,7 +62,16 @@ function SearchEvents() {
   const { auth } = useContext(AuthContext)
   const { searchText, currentPage, allCheck, currentCheck, expiredCheck } =
     formProps
-  const { id, title, start, end, isPrivate, description, createdById } = event
+  const {
+    id,
+    title,
+    start,
+    end,
+    isPrivate,
+    isPetFriendly,
+    description,
+    createdById,
+  } = event
   const { displayDeleteBtn, hideSaveBtn, disableSaveBtn, disableDeleteBtn } =
     actionBtns
 
@@ -120,7 +130,16 @@ function SearchEvents() {
   }
 
   const clickEventHandler = (event: EventFull) => {
-    const { id, title, start, end, isPrivate, description, createdBy } = event
+    const {
+      id,
+      title,
+      start,
+      end,
+      isPrivate,
+      isPetFriendly,
+      description,
+      createdBy,
+    } = event
     const createdById = createdBy?._id ?? ''
     const isTheOwner = (auth && auth.userId === createdById) ?? false
 
@@ -146,6 +165,7 @@ function SearchEvents() {
       end,
       description,
       isPrivate,
+      isPetFriendly,
       createdById,
     })
     setModal({
@@ -198,6 +218,7 @@ function SearchEvents() {
           start,
           end,
           isPrivate,
+          isPetFriendly,
           description,
         },
       },
@@ -277,6 +298,7 @@ function SearchEvents() {
     createdAt: event.createdAt ?? 0,
     updatedAt: event.updatedAt ?? 0,
     isPrivate: event.isPrivate,
+    isPetFriendly: event.isPetFriendly,
   })
 
   return (

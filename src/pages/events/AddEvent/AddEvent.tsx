@@ -18,6 +18,7 @@ const initEvent = {
   start: '',
   end: '',
   isPrivate: false,
+  isPetFriendly: false,
   description: '',
 }
 
@@ -27,10 +28,20 @@ function AddEvent() {
   const [resetForm, setResetForm] = useState(false)
   const [disableSaveBtn, setDisableSaveBtn] = useState(true)
 
-  const { title, start, end, isPrivate, description } = event
+  const { title, start, end, isPrivate, isPetFriendly, description } = event
 
   const [saveEvent, { error, data, loading, reset }] = useSaveEventMutation({
-    variables: { event: { id: '', title, start, end, isPrivate, description } },
+    variables: {
+      event: {
+        id: '',
+        title,
+        start,
+        end,
+        isPrivate,
+        isPetFriendly,
+        description,
+      },
+    },
   })
 
   const { auth } = useContext(AuthContext)

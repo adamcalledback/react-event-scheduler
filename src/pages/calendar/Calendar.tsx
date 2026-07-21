@@ -45,6 +45,7 @@ function Calendar() {
     start: '',
     end: '',
     isPrivate: false,
+    isPetFriendly: false,
     description: '',
     createdById: '',
   })
@@ -81,7 +82,7 @@ function Calendar() {
     fetchPolicy: 'cache-and-network',
   })
 
-  const { title, start, end, isPrivate, description } = event
+  const { title, start, end, isPrivate, isPetFriendly, description } = event
 
   const [saveEvent, { loading: saveEventLoading }] = useSaveEventMutation({
     onError: setServerError,
@@ -135,6 +136,7 @@ function Calendar() {
           start,
           end,
           isPrivate,
+          isPetFriendly,
           description,
         },
       },
@@ -144,6 +146,10 @@ function Calendar() {
       if (clickInfoRef.current?.value) {
         clickInfoRef.current.value.event.setProp('title', title)
         clickInfoRef.current.value.event.setExtendedProp('isPrivate', isPrivate)
+        clickInfoRef.current.value.event.setExtendedProp(
+          'isPetFriendly',
+          isPetFriendly,
+        )
         clickInfoRef.current.value.event.setExtendedProp(
           'description',
           description,
@@ -178,6 +184,7 @@ function Calendar() {
       start: `${selectedDate.dateStr}T00:00:00`,
       end: `${selectedDate.dateStr}T01:00:00`,
       isPrivate: false,
+      isPetFriendly: false,
       description: '',
       createdById: '',
     })
@@ -220,13 +227,15 @@ function Calendar() {
     )
 
     const { title } = clickInfo.event
-    const { isPrivate, description, createdBy } = clickInfo.event.extendedProps
+    const { isPrivate, isPetFriendly, description, createdBy } =
+      clickInfo.event.extendedProps
 
     setEvent({
       title,
       start,
       end,
       isPrivate,
+      isPetFriendly,
       description,
       createdById: createdBy._id,
     })

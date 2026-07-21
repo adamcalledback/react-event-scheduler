@@ -9,6 +9,7 @@
     "test:coverage": "jest --watchAll=false --coverage",
     "start:server": "cd api && ts-node-dev --respawn --transpile-only ./index.ts && wait-on tcp:4000",
     "start:web": "vite --host --open",
+    "migrate:pet-friendly": "ts-node api/migrations/backfillPetFriendly.ts",
     "ts-check": "tsc --noEmit --watch",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",

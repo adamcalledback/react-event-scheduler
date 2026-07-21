@@ -5,6 +5,7 @@ export interface IEvent {
   end: string
   url?: string
   isPrivate: boolean
+  isPetFriendly: boolean
   description: string
   createdBy?: string
   subtitle?: string

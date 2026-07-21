@@ -39,6 +39,7 @@ export type EventFull = {
   description: Scalars['String']['output'];
   end: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  isPetFriendly: Scalars['Boolean']['output'];
   isPrivate: Scalars['Boolean']['output'];
   start: Scalars['String']['output'];
   title: Scalars['String']['output'];
@@ -50,6 +51,7 @@ export type EventInput = {
   description: Scalars['String']['input'];
   end: Scalars['String']['input'];
   id: Scalars['String']['input'];
+  isPetFriendly: Scalars['Boolean']['input'];
   isPrivate: Scalars['Boolean']['input'];
   start: Scalars['String']['input'];
   title: Scalars['String']['input'];
@@ -182,16 +184,16 @@ export type UserInputFull = {
 
 export type UserFullFragment = { __typename?: 'UserFull', _id: string, username: string, firstName?: string | null, lastName?: string | null, email?: string | null, phoneNumber?: string | null, bio?: string | null, createdAt?: number | null, updatedAt?: number | null };
 
-export type EventFullFragment = { __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null };
+export type EventFullFragment = { __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, isPetFriendly: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null };
 
-export type EventsFragment = { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> };
+export type EventsFragment = { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, isPetFriendly: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> };
 
 export type SaveEventMutationVariables = Exact<{
   event: EventInput;
 }>;
 
 
-export type SaveEventMutation = { __typename?: 'Mutation', saveEvent: { __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null } };
+export type SaveEventMutation = { __typename?: 'Mutation', saveEvent: { __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, isPetFriendly: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null } };
 
 export type SaveUserMutationVariables = Exact<{
   user: UserInputFull;
@@ -219,14 +221,14 @@ export type GetEventMutationVariables = Exact<{
 }>;
 
 
-export type GetEventMutation = { __typename?: 'Mutation', getEvent: { __typename?: 'EventFull', title: string, start: string, end: string, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', username: string } | null } };
+export type GetEventMutation = { __typename?: 'Mutation', getEvent: { __typename?: 'EventFull', title: string, start: string, end: string, description: string, isPetFriendly: boolean, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', username: string } | null } };
 
 export type GetEventsQueryVariables = Exact<{
   filter?: InputMaybe<FilterInput>;
 }>;
 
 
-export type GetEventsQuery = { __typename?: 'Query', eventsData: { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> } };
+export type GetEventsQuery = { __typename?: 'Query', eventsData: { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, isPetFriendly: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> } };
 
 export type GetUserQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -241,7 +243,7 @@ export type GetUserEventsQueryVariables = Exact<{
 }>;
 
 
-export type GetUserEventsQuery = { __typename?: 'Query', getUserEvents: { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> } };
+export type GetUserEventsQuery = { __typename?: 'Query', getUserEvents: { __typename?: 'Events', totalCount?: number | null, events: Array<{ __typename?: 'EventFull', id: string, title: string, start: string, end: string, url?: string | null, isPrivate: boolean, isPetFriendly: boolean, description: string, createdAt?: number | null, updatedAt?: number | null, createdBy?: { __typename?: 'User', _id: string, username: string } | null }> } };
 
 export type LoginQueryVariables = Exact<{
   login: LoginInput;
@@ -384,6 +386,7 @@ export type EventFullResolvers<ContextType = any, ParentType extends ResolversPa
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   end?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  isPetFriendly?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   isPrivate?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   start?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -465,6 +468,7 @@ export const EventFullFragmentDoc = gql`
   end
   url
   isPrivate
+  isPetFriendly
   description
   createdAt
   updatedAt
@@ -622,6 +626,7 @@ export const GetEventDocument = gql`
     start
     end
     description
+    isPetFriendly
     createdAt
     updatedAt
     createdBy {
@@ -688,6 +693,9 @@ export function useGetEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetEventsQuery, GetEventsQueryVariables>(GetEventsDocument, options);
         }
+// @ts-ignore
+export function useGetEventsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetEventsQuery, GetEventsQueryVariables>): Apollo.UseSuspenseQueryResult<GetEventsQuery, GetEventsQueryVariables>;
+export function useGetEventsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetEventsQuery, GetEventsQueryVariables>): Apollo.UseSuspenseQueryResult<GetEventsQuery | undefined, GetEventsQueryVariables>;
 export function useGetEventsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetEventsQuery, GetEventsQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetEventsQuery, GetEventsQueryVariables>(GetEventsDocument, options);
@@ -728,6 +736,9 @@ export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Ge
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
         }
+// @ts-ignore
+export function useGetUserSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserQuery, GetUserQueryVariables>): Apollo.UseSuspenseQueryResult<GetUserQuery, GetUserQueryVariables>;
+export function useGetUserSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserQuery, GetUserQueryVariables>): Apollo.UseSuspenseQueryResult<GetUserQuery | undefined, GetUserQueryVariables>;
 export function useGetUserSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, options);
@@ -769,6 +780,9 @@ export function useGetUserEventsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetUserEventsQuery, GetUserEventsQueryVariables>(GetUserEventsDocument, options);
         }
+// @ts-ignore
+export function useGetUserEventsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetUserEventsQuery, GetUserEventsQueryVariables>): Apollo.UseSuspenseQueryResult<GetUserEventsQuery, GetUserEventsQueryVariables>;
+export function useGetUserEventsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserEventsQuery, GetUserEventsQueryVariables>): Apollo.UseSuspenseQueryResult<GetUserEventsQuery | undefined, GetUserEventsQueryVariables>;
 export function useGetUserEventsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserEventsQuery, GetUserEventsQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetUserEventsQuery, GetUserEventsQueryVariables>(GetUserEventsDocument, options);
@@ -812,6 +826,9 @@ export function useLoginLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Logi
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<LoginQuery, LoginQueryVariables>(LoginDocument, options);
         }
+// @ts-ignore
+export function useLoginSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<LoginQuery, LoginQueryVariables>): Apollo.UseSuspenseQueryResult<LoginQuery, LoginQueryVariables>;
+export function useLoginSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<LoginQuery, LoginQueryVariables>): Apollo.UseSuspenseQueryResult<LoginQuery | undefined, LoginQueryVariables>;
 export function useLoginSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<LoginQuery, LoginQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<LoginQuery, LoginQueryVariables>(LoginDocument, options);

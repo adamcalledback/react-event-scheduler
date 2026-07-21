@@ -30,6 +30,7 @@ const SharedEvent = () => {
     createdBy: data?.getEvent.createdBy?.username,
     createdAt: data?.getEvent.createdAt,
     updatedAt: data?.getEvent.updatedAt,
+    isPetFriendly: data?.getEvent.isPetFriendly,
   }
 
   return <CardView card={card} />

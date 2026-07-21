@@ -17,6 +17,7 @@ fragment EventFull on EventFull {
   end
   url
   isPrivate
+  isPetFriendly
   description
   createdAt
   updatedAt

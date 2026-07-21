@@ -110,7 +110,7 @@ export const Events = {
   },
   saveEvent: async (
     {
-      event: { id, title, start, end, isPrivate, description },
+      event: { id, title, start, end, isPrivate, isPetFriendly, description },
     }: { event: EventInput },
     { isAuthorized, userId }: IAuthParams,
   ) => {
@@ -135,7 +135,7 @@ export const Events = {
 
       savedEvent = await EventModel.findOneAndUpdate(
         { _id: id, createdBy: userId },
-        { title, start, end, isPrivate, description },
+        { title, start, end, isPrivate, isPetFriendly, description },
         { new: true },
       ).populate('createdBy')
     } else {
@@ -144,6 +144,7 @@ export const Events = {
         start,
         end,
         isPrivate,
+        isPetFriendly,
         description,
         createdBy: userId,
       })
